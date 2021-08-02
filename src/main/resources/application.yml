@@ -1,0 +1,8 @@
+scanevent:
+         lCarrierService: Delivered,Departed,Loaded,Received,OrderCreated
+         Delivered: Delivered
+         Departed: In-transit
+         Loaded: Origin scan
+         OrderCreated: Origin scan
+         Received: Origin scan
+

@@ -1,0 +1,72 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1627915395.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#root/data",
+      "title": "Data",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/data/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "productid",
+          "prodName",
+          "availQty",
+          "availDate"
+        ],
+        "properties": {
+          "productid": {
+            "$id": "#root/data/items/productid",
+            "title": "Productid",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Prod1"
+            ],
+            "pattern": "^.*$"
+          },
+          "prodName": {
+            "$id": "#root/data/items/prodName",
+            "title": "Prodname",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Shirt"
+            ],
+            "pattern": "^.*$"
+          },
+          "availQty": {
+            "$id": "#root/data/items/availQty",
+            "title": "Availqty",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "10"
+            ],
+            "pattern": "^.*$"
+          },
+          "availDate": {
+            "$id": "#root/data/items/availDate",
+            "title": "Availdate",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "10"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    }
+  }
+}
