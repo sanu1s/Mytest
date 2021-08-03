@@ -1,0 +1,72 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1627941147.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "capacityData"
+  ],
+  "properties": {
+    "capacityData": {
+      "$id": "#root/capacityData",
+      "title": "Capacitydata",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/capacityData/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "storeNo",
+          "productId",
+          "date",
+          "noOfOrdersAccepted"
+        ],
+        "properties": {
+          "storeNo": {
+            "$id": "#root/capacityData/items/storeNo",
+            "title": "Storeno",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "productId": {
+            "$id": "#root/capacityData/items/productId",
+            "title": "Productid",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Prod1"
+            ],
+            "pattern": "^.*$"
+          },
+          "date": {
+            "$id": "#root/capacityData/items/date",
+            "title": "Date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2021-02-21"
+            ],
+            "pattern": "^.*$"
+          },
+          "noOfOrdersAccepted": {
+            "$id": "#root/capacityData/items/noOfOrdersAccepted",
+            "title": "Noofordersaccepted",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    }
+  }
+}

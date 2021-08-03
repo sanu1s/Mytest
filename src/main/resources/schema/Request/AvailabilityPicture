@@ -1,0 +1,72 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1627941167.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "availabilityData"
+  ],
+  "properties": {
+    "availabilityData": {
+      "$id": "#root/availabilityData",
+      "title": "Availabilitydata",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/availabilityData/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "storeNo",
+          "productId",
+          "date",
+          "availableQty"
+        ],
+        "properties": {
+          "storeNo": {
+            "$id": "#root/availabilityData/items/storeNo",
+            "title": "Storeno",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "productId": {
+            "$id": "#root/availabilityData/items/productId",
+            "title": "Productid",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Prod1"
+            ],
+            "pattern": "^.*$"
+          },
+          "date": {
+            "$id": "#root/availabilityData/items/date",
+            "title": "Date",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2021-02-21"
+            ],
+            "pattern": "^.*$"
+          },
+          "availableQty": {
+            "$id": "#root/availabilityData/items/availableQty",
+            "title": "Availableqty",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1627939698.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "storeNo",
+    "productId",
+    "reqQty",
+    "reqDate",
+    "status"
+  ],
+  "properties": {
+    "storeNo": {
+      "$id": "#root/storeNo",
+      "title": "Storeno",
+      "type": "string",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "pattern": "^.*$"
+    },
+    "productId": {
+      "$id": "#root/productId",
+      "title": "Productid",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "Prod1"
+      ],
+      "pattern": "^.*$"
+    },
+    "reqQty": {
+      "$id": "#root/reqQty",
+      "title": "Reqqty",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2"
+      ],
+      "pattern": "^.*$"
+    },
+    "reqDate": {
+      "$id": "#root/reqDate",
+      "title": "Reqdate",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2021-02-21"
+      ],
+      "pattern": "^.*$"
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "pattern": "^.*$"
+    }
+  }
+}
