@@ -1,0 +1,72 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1628144069.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "productId",
+    "orderList"
+  ],
+  "properties": {
+    "productId": {
+      "$id": "#root/productId",
+      "title": "Productid",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "Product1"
+      ],
+      "pattern": "^.*$"
+    },
+    "orderList": {
+      "$id": "#root/orderList",
+      "title": "Orderlist",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/orderList/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "orderNo",
+          "createDate",
+          "quantity"
+        ],
+        "properties": {
+          "orderNo": {
+            "$id": "#root/orderList/items/orderNo",
+            "title": "Orderno",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "order3"
+            ],
+            "pattern": "^.*$"
+          },
+          "createDate": {
+            "$id": "#root/orderList/items/createDate",
+            "title": "Createdate",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2021-03-16"
+            ],
+            "pattern": "^.*$"
+          },
+          "quantity": {
+            "$id": "#root/orderList/items/quantity",
+            "title": "Quantity",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "30"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    }
+  }
+}

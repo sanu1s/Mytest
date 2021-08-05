@@ -1,0 +1,82 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1628143909.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "orderData"
+  ],
+  "properties": {
+    "orderData": {
+      "$id": "#root/orderData",
+      "title": "Orderdata",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/orderData/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "productId",
+          "createDate",
+          "status",
+          "quantity"
+        ],
+        "properties": {
+          "productId": {
+            "$id": "#root/orderData/items/productId",
+            "title": "Productid",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Prod1"
+            ],
+            "pattern": "^.*$"
+          },
+          "createDate": {
+            "$id": "#root/orderData/items/createDate",
+            "title": "Createdate",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "orderNo": {
+            "$id": "#root/orderData/items/orderNo",
+            "title": "orderNo",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "status": {
+            "$id": "#root/orderData/items/status",
+            "title": "Status",
+            "type": "string",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^.*$"
+          },
+          "quantity": {
+            "$id": "#root/orderData/items/quantity",
+            "title": "Quantity",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "2"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+
+    }
+  }
+}

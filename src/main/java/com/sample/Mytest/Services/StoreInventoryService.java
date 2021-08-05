@@ -25,29 +25,33 @@ public class StoreInventoryService {
 
     AvailabilityPicture availabilityPicture=createAvailabilityPicture();
     CapacityPicture capacityPicture=createCapacityPicture();
-
-        Executor executor= Executors.newFixedThreadPool(10);
+        final List<String>[] lavailability = new List[]{new ArrayList<>()};
+        final List<String>[] lcapacity = new List[]{new ArrayList<>()};
+        lavailability[0] =getAvailability(availabilityPicture,storeInventoryRequest);
+        lcapacity[0] =getCapacity(capacityPicture,storeInventoryRequest);
+        Executor executor= Executors.newFixedThreadPool(1);
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                logger.info("Running the Executor Service");
-                List<String> lavailability=getAvailability(availabilityPicture,storeInventoryRequest);
-                List<String> lcapacity=getCapacity(capacityPicture,storeInventoryRequest);
-
-                boolean bNotAvailable=lavailability.stream().findFirst().orElse("0").equalsIgnoreCase("0");
-                boolean bNoCapacity=lcapacity.stream().findFirst().orElse("0").equalsIgnoreCase("0");
-                if(bNotAvailable || bNoCapacity){
-                    storeInventoryResponse.setStatus("NotAvailable");
-                }
-                else if(!bNotAvailable && !bNoCapacity){
-                    storeInventoryResponse.setStatus("Available");
-                }
-                else{
-                    storeInventoryResponse.setStatus("NotAvailable");
-                }
-
+                lavailability[0] =getAvailability(availabilityPicture,storeInventoryRequest);
+                lcapacity[0] =getCapacity(capacityPicture,storeInventoryRequest);
             }
         });
+
+
+        boolean bNotAvailable= lavailability[0].stream().findFirst().orElse("0").equalsIgnoreCase("0");
+        boolean bNoCapacity= lcapacity[0].stream().findFirst().orElse("0").equalsIgnoreCase("0");
+        if(bNotAvailable || bNoCapacity){
+            storeInventoryResponse.setStatus("NotAvailable");
+        }
+        else if(!bNotAvailable && !bNoCapacity){
+            storeInventoryResponse.setStatus("Available");
+        }
+        else{
+            storeInventoryResponse.setStatus("NotAvailable");
+        }
+
+
 
     return storeInventoryResponse;
     }
