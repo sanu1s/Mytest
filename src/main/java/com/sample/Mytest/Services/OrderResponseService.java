@@ -17,9 +17,7 @@ public class OrderResponseService {
 
     Logger logger=Logger.getLogger(String.valueOf(OrderResponse.class));
     int sumQty=0;
-    int qtyCheck=0;
-    int temp=99999;
-    Map<String, String> productQtyMap=new HashMap<String,String>();
+    final Map<String, String> productQtyMap=new HashMap<String,String>();
 
     public OrderResponse orderResponseImpl(OrderRequest orderRequest){
 
@@ -27,11 +25,45 @@ public class OrderResponseService {
         List<Order> orderList=new ArrayList<Order>();
         OrderData orderData=createOrderData();
         if(("MAX_SALE").equalsIgnoreCase(orderRequest.getStatName())){
-            orderData.getOrderData().stream()
-                    .map(a->checkProductId(a))
-                    .collect(Collectors.toList());
-            logger.info("The Final Map is"+productQtyMap.toString());
+            filterProductID(orderData,orderResponse,orderList,true);
+        }
+        else
+        {    int qtyCheck=0;
+            filterProductID(orderData,orderResponse,orderList,false);
+        }
 
+        return orderResponse;
+    }
+
+    public OrderResponse filterProductID(OrderData orderData, OrderResponse orderResponse, List<Order> orderList, boolean bMaxSoldOut){
+        orderData.getOrderData().stream()
+                .map(a->checkProductId(a))
+                .collect(Collectors.toList());
+        logger.info("The Final Map is"+productQtyMap.toString());
+
+        populateProductMap(orderResponse,bMaxSoldOut);
+
+        logger.info("The Max/Min Sold Out Quantity IS"+orderResponse.getProductId());
+        List<OrderDatum> orderDatumList=orderData.getOrderData().stream().filter(a->a.getProductId()
+                .equalsIgnoreCase(orderResponse.getProductId()))
+                .collect(Collectors.toList());
+
+        logger.info("orderDatumList==>"+orderDatumList.toString());
+        for(OrderDatum str:orderDatumList){
+            Order order=new Order();
+            order.setQuantity(str.getQuantity());
+            order.setCreateDate(str.getCreateDate());
+            order.setOrderNo(str.getOrderNo());
+            orderList.add(order);
+        }
+        orderResponse.setOrderList(orderList);
+        return orderResponse;
+
+    }
+
+    public void populateProductMap(OrderResponse orderResponse, boolean bMaxSoldOut){
+        int qtyCheck=0;
+        if(bMaxSoldOut){
             for(Map.Entry<String,String> iterate:productQtyMap.entrySet()) {
                 String strQty = iterate.getValue();
                 int iQty = Integer.parseInt(strQty);
@@ -41,27 +73,24 @@ public class OrderResponseService {
                     orderResponse.setProductId(iterate.getKey());
                 }
             }
-            logger.info("The Max Sold Out Quantity IS"+String.valueOf(qtyCheck));
-            logger.info("The Max Sold Out Quantity IS"+orderResponse.getProductId());
-            List<OrderDatum> orderDatumList=orderData.getOrderData().stream().filter(a->a.getProductId()
-                    .equalsIgnoreCase(orderResponse.getProductId()))
-                    .collect(Collectors.toList());
-
-            logger.info("orderDatumList==>"+orderDatumList.toString());
-            for(OrderDatum str:orderDatumList){
-                Order order=new Order();
-                order.setQuantity(str.getQuantity());
-                order.setCreateDate(str.getCreateDate());
-                order.setOrderNo(str.getOrderNo());
-                orderList.add(order);
-            }
-            orderResponse.setOrderList(orderList);
-
         }
-
-        return orderResponse;
+        else {
+            for (Map.Entry<String, String> iterate : productQtyMap.entrySet()) {
+                String strQty = iterate.getValue();
+                int iQty = Integer.parseInt(strQty);
+                if (qtyCheck == 0) {
+                    logger.info("Its the Minimal Qty" + iQty);
+                    qtyCheck = iQty;
+                    orderResponse.setProductId(iterate.getKey());
+                }
+                if (iQty < qtyCheck) {
+                    logger.info("Its the Minimal Qty" + iQty);
+                    qtyCheck = iQty;
+                    orderResponse.setProductId(iterate.getKey());
+                }
+            }
+        }
     }
-
 
     private Object checkProductId(OrderDatum orderData) {
 
